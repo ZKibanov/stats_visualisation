@@ -3,7 +3,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { useAppSelector } from '../hooks';
 import apiService from '../api/apiService';
 import Card from './Card';
-
 import './App.css';
 
 function App() {
