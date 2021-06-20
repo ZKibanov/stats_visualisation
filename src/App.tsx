@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { useAppSelector } from './hooks'
+import apiService from './api/apiService';
+import Card from './Card'
+
 import './App.css';
 
 function App() {
+  const isLoading = useAppSelector(state => state.info.isLoading)
+  const countries = useAppSelector(state => state.data.countries)
+
+useEffect(()=>{
+ apiService()
+},[])
+const content=[];
+ for ( const key in countries){
+  if (Object.prototype.hasOwnProperty.call(countries, key)) {
+content.push(<Card key={key} regionInfo={countries[key]} name={key}/>)
+  }
+}
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+   {isLoading && < CircularProgress/>}
+   {content}
+   {!isLoading && <p>hello world</p>}
     </div>
   );
 }
