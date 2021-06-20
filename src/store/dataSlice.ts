@@ -1,17 +1,17 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import type { SortedByRegion, ShortCountryInfo } from '../types'
-import type { RootState } from './store'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { SortedByRegion } from '../types';
+import type { RootState } from './store';
 
 /* eslint-disable no-param-reassign */
 // Define a type for the slice state
 interface CountriesState {
-  countries:SortedByRegion;
+  countries: SortedByRegion;
 }
 
 // Define the initial state using that type
 const initialState: CountriesState = {
-  countries: {}
-}
+  countries: {},
+};
 
 export const counterSlice = createSlice({
   name: 'countriesInfo',
@@ -20,14 +20,14 @@ export const counterSlice = createSlice({
   reducers: {
     // Use the PayloadAction type to declare the contents of `action.payload`
     manageCountriesList: (state, action: PayloadAction<SortedByRegion>) => {
-      state.countries = {...action.payload}
-    }
-  }
-})
+      state.countries = { ...action.payload };
+    },
+  },
+});
 
-export const { manageCountriesList } = counterSlice.actions
+export const { manageCountriesList } = counterSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectCountry = (state: RootState) => state.data.countries
+export const selectCountry = (state: RootState) => state.data.countries;
 
-export default counterSlice.reducer
+export default counterSlice.reducer;
