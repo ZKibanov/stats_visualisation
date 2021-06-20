@@ -1,7 +1,10 @@
 import React, { FC, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
+import Button from '@material-ui/core/Button';
 import { ShortCountryInfo } from '../types';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 import classes from './Card.module.scss';
+
 
 interface CardProps {
   name: string;
@@ -73,12 +76,14 @@ const Card: FC<CardProps> = (props: CardProps) => {
     }
   };
   return (
+    <ErrorBoundary>
     <div className={classes.card}>
       <Bar className={classes.bar} type="bar" data={data} options={options} />
-      <button type="button" className={classes.btn} onClick={sortData}>
-        Сортировка
-      </button>
+      <Button variant="contained" color="primary" onClick={sortData}>
+  Сортировка
+</Button>
     </div>
+    </ErrorBoundary>
   );
 };
 
